@@ -4,8 +4,11 @@
 **Description:** A progressively-enhanced and responsive carousel,
                based on Brad Frost's Fluid Carousel:
                http://codepen.io/bradfrost/full/tdacu
+
 **Author:**      Shaun O'Connell - shaun@tactile.co.za
+
 **Author URL:**  http://tactile.co.za (eventually)
+
 **Requires:**    jQuery 1.8.2+
 
 ## Browser support
