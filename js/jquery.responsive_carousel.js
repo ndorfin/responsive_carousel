@@ -99,9 +99,9 @@ $(document).ready(function() {
 	
 	function buildCarousel() { //Build the Carousel
 		sizeCarousel();
-		/*if(Modernizr.touch) {
+		if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
 			buildSwipe();
-		}*/
+		}
 	}
 	
 	function posCarousel() { //Animate Carousel. CSS transitions used for the actual animation.
@@ -127,7 +127,7 @@ $(document).ready(function() {
 		posCarousel();
 	}
 
-/*	function buildSwipe() {
+	function buildSwipe() {
 		var threshold = 80,
 		    origX = 0,
 		    finalX = 0,
@@ -161,5 +161,4 @@ $(document).ready(function() {
 			origX = finalX = diffX = 0;
 		});
 	}
- */
 })(this);
