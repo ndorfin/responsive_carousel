@@ -1,5 +1,7 @@
 /*
-Description: A progressively-enhanced and responsive carousel, based on Brad Frost's Fluid Carousel: http://codepen.io/bradfrost/full/tdacu
+Description: A progressively-enhanced and responsive carousel,
+             based on Brad Frost's Fluid Carousel:
+             http://codepen.io/bradfrost/full/tdacu
 Author:      Shaun O'Connell - shaun@tactile.co.za
 More info:   http://tactile.co.za (eventually)
 Requires:    jQuery 1.8.2+
@@ -25,16 +27,16 @@ $.fn.loadimage = function(src, alt, f) {
 
 function enhance_carousel(){
 	// Progressively add images to the carousel
-	var img_len = carousel_images.length;
-	var ul = $('<ul></ul>');
+	var img_len = carousel_images.length,
+	    ul = $('<ul></ul>');
 	for (var i=0; i<img_len; i++) {
-		var li = $('<li></li>');
-		var src = carousel_images[i][0];
+		var li = $('<li></li>'),
+		    src = carousel_images[i][0];
 		li.loadimage(src);
 		ul.append(li);
 	}
-	$('#carousel_container').append(ul);
-	$('#carousel_container').append('<nav><ul><li class="next"><a href="#next">Next</a></li><li class="previous"><a href="#previous">Previous</a></li></ul></nav>');
+	$('#carousel').append(ul);
+	$('#carousel').append('<nav><ul><li class="next"><a href="#next">Next</a></li><li class="previous"><a href="#previous">Previous</a></li></ul></nav>');
 }
 
 $(document).ready(function() {
@@ -49,7 +51,7 @@ $(document).ready(function() {
 	    multiplier = 1, /*Determines the number of panels*/
 	    $carousel,
 	    $cList,
-	    $cContainer,
+	    //$cContainer,
 	    $cWidth,
 	    cLeft,
 	    $li,
@@ -60,15 +62,15 @@ $(document).ready(function() {
 
 	$(document).ready(function() {
 		$carousel = $('#carousel'),
-		$cList = $('#carousel_container > ul'),
-		$cContainer = $('#carousel_container'),
-		$cWidth = $cContainer.outerWidth(),
+		$cList = $('#carousel > ul'),
+		//$cContainer = $('#carousel_container'),
+		$cWidth = $carousel.outerWidth(),
 		cLeft = $cList.css("left").replace("px",""),
 		$li = $cList.find('li'),
 		$liLength = $li.size(),
 		numPages = $liLength/multiplier,
-		$prev = $('#carousel_container nav .previous a'),
-		$next = $('#carousel_container nav .next a');
+		$prev = $('#carousel nav .previous a'),
+		$next = $('#carousel nav .next a');
 		$prev.on("click", function(e){ //Previous Button Click
 			e.preventDefault();
 			moveRight();
@@ -82,7 +84,7 @@ $(document).ready(function() {
 	
 	$(window).resize(function(){ //On Window Resize
 		sw = document.body.clientWidth;
-		$cWidth = $cContainer.width();
+		$cWidth = $carousel.width();
 		breakpointSize = window.getComputedStyle(document.body,':after').getPropertyValue('content');  /* Conditional CSS http://adactio.com/journal/5429/ */
 		sizeCarousel();
 		posCarousel();
@@ -91,7 +93,8 @@ $(document).ready(function() {
 	function sizeCarousel() { //Determine the size and number of panels to reveal
 		current = 0;
 		animLimit = $liLength/multiplier-1;
-		$li.outerWidth($cWidth/multiplier); //Set panel widths
+		$cList.width($cWidth * $liLength);
+		$li.outerWidth(100/$liLength + '%'); //Set panel widths
 	}
 	
 	function buildCarousel() { //Build the Carousel
@@ -124,7 +127,7 @@ $(document).ready(function() {
 		posCarousel();
 	}
 
-	function buildSwipe() {
+/*	function buildSwipe() {
 		var threshold = 80,
 		    origX = 0,
 		    finalX = 0,
@@ -132,12 +135,12 @@ $(document).ready(function() {
 		    changeY = 0,
 		    curPos;
 		//Touch Start
-		$cContainer.get(0).addEventListener("touchstart", function (event) {
+		$carousel.get(0).addEventListener("touchstart", function (event) {
 			origX = event.targetTouches[0].pageX;
 			curPos = origX;
 		});
 		//Touch Move
-		$cContainer.get(0).addEventListener("touchmove", function (event) {
+		$carousel.get(0).addEventListener("touchmove", function (event) {
 			finalX = event.touches[0].pageX,
 			diffX = origX - finalX,
 			leftPos = cLeft-diffX;
@@ -145,7 +148,7 @@ $(document).ready(function() {
 			$cList.css("left",leftPos);
 		});
 		//Touch Move
-		$cContainer.get(0).addEventListener("touchend", function (event) {
+		$carousel.get(0).addEventListener("touchend", function (event) {
 			var diffX = origX - finalX,
 			    diffXAbs = Math.abs(diffX);
 			if (diffX > 0 && diffXAbs > threshold) {
@@ -158,5 +161,5 @@ $(document).ready(function() {
 			origX = finalX = diffX = 0;
 		});
 	}
-  
+ */
 })(this);
