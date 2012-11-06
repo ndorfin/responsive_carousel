@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Responsive Carousel</title>
+		<link rel="stylesheet" href="css/responsive_carousel.css">
+	</head>
+	<body>
+		<p>An example of a progressively-enhanced carousel that is 'responsive'.</p>
+		<div id="carousel" class="carousel">
+			<div id="carousel_container">
+				<noscript>
+					<img src="//placehold.it/100x400" alt="A tall but thin placeholder">
+					<img src="//placehold.it/400x100" alt="A fat but short placeholder">
+					<img src="//placehold.it/400x400" alt>
+					<img src="//placehold.it/100x100" alt="A smaller square placeholder">
+					<img src="//placehold.it/500x500" alt="A larger square placeholder">
+				</noscript>
+				<script>
+					var carousel_images = [
+						["//placehold.it/100x400", "A tall but thin placeholder"],
+						["//placehold.it/400x100", "A fat but short placeholder"],
+						["//placehold.it/400x400"],
+						["//placehold.it/100x100", "A smaller square placeholder"],
+						["//placehold.it/500x500", "A larger square placeholder"]
+					];
+				</script>
+			</div>
+		</div>
+		<script src="js/lib/jquery-1.8.2.min.js"></script>
+		<script src="js/jquery.responsive_carousel.js"></script>
+	</body>
+</html>
